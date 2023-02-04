@@ -1,0 +1,52 @@
+{% load static %}
+
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}" />
+    <link rel="shortcut icon" href="" />
+    <title>Мой блог</title>
+</head>
+<body>
+<div class="shell">
+    <div class="border">
+        <div id="navigation">
+            <ul>
+                <li><a href="{% url 'main' %}" class="active">Главная</a></li>
+                
+            </ul>
+        </div>
+
+        <div id="main">
+            <div id="content" class="left">
+                <div class="projects">
+                    <h3>Записи</h3>
+                    {% for el in posts %}
+                    <div class="item">
+                        <div class="image left">
+                            <a href="#"
+                            ><img
+                                    src="{{ el.img.url }}"
+                                    alt="photo-recipes"
+                                    width="200px"
+                                    height="120px"
+                            /></a>
+                        </div>
+                        <div class="text left">
+                            <h4><a href="{% url 'post_detail' el.id %}">{{ el.title }}</a></h4>
+                            <p>{{ el.descriptio | truncatewords:70 }}</p><hr><br>
+                            <h4>Автор: {{ el.author }}</h4>
+                        </div>
+                        <div class="cl">&nbsp;</div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="cl">&nbsp;</div>
+        </div>
+    </div>
+    <div id="footer">
+        <p class="copy right">Copyright &copy; 2023</p>
+    </div>
+</div>
+</body>
+</html>
